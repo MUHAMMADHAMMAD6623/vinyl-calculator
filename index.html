@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epoxy Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffffff;
+        }
+        .calculator{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .calculator .inputs{
+            width: 420px;
+            height: auto;
+            padding: 40px 40px 40px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            background-color: #d3d3d3;
+            border-radius: 10px;
+            border: 1px solid rgb(138, 138, 138);
+        }
+        .calculator .inputs .left-column{
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            position: relative;
+            top: 20px;
+        }
+        .calculator .inputs .right-column .first-column{
+            display: flex;
+            flex-direction: column;
+            width: fit-content;
+        }
+        .calculator .inputs .right-column{
+            display: flex;
+            gap: 0.4rem;
+        }
+        .calculator .inputs .top-row{
+            display: flex;
+            gap: 0.7rem;
+        }
+        .calculator .inputs .top-row .right-column .first-column .top-row-first-column{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 0.3rem;
+            width: fit-content;
+        }
+        input{
+            width: 120px;
+            height: 22px;
+            border: 1px solid black;
+        }
+        .calculator .inputs .top-row .right-column .second-column{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        .different-input{
+            width: 63%;
+            text-align: center;
+        }
+        input[type="checkbox"]{
+            width: fit-content;
+            border: none;
+        }
+        .calculator .inputs .bottom-row{
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .calculator .inputs .bottom-row .button-row{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            position: relative;
+            left: 36px;
+        }
+        .calculator .inputs .bottom-row .button-row button{
+            width: 120px;
+            padding: 10px;
+            cursor: pointer;
+            color: white;
+            font-size: 1rem;
+        }
+        .calculator .inputs .bottom-row .checkbox-row{
+            position: relative;
+            left: 86px;
+            display: flex;
+            gap: 1.8rem;
+        }
+        .calculator .result .left-result-column{
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+        .calculator .result .right-result-column{
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        .calculator .result{
+            display: flex;
+            gap: 0.7rem;
+            background-color: #d3d3d3;
+            border-radius: 10px;
+            padding: 40px;
+            border: 1px solid rgb(138, 138, 138);
+        }
+        .calc-button{
+            border-radius: 3px;
+            background-color: rgb(18, 112, 31);
+            border: none;
+            transition: 0.2s ease-in-out background-color;
+        }
+        .calc-button:hover{
+            background-color: rgb(30, 150, 46);
+        }
+        .reset-button{
+            border-radius: 3px;
+            background-color: rgb(194, 34, 34);
+            border: none;
+            transition: 0.2s ease-in-out background-color;
+        }
+        .reset-button:hover{
+            background-color: rgb(243, 54, 54);
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="inputs">
+            <div class="top-row">
+            <div class="left-column">
+                <label>Width:</label>
+                <label>Length:</label>
+                <label>Cost SqFt:</label>
+            </div>
+            <div class="right-column">
+                <div class="first-column">
+                    <div class="top-row-first-column">
+                    <label>Feet</label>
+                    <input type="number">
+                    <input type="number">
+                    <input type="number">
+                    </div>
+                </div>
+                <div class="second-column">
+                    <label>Inches</label>
+                    <input type="number"min='0'max='11'>
+                    <input type="number"min='0'max='11'>
+                </div>
+            </div>
+            </div>
+                <div class="bottom-row">
+                    
+                    <div class="checkbox-row">
+                        <div class="left-waste-factor">
+                        <label>Waste Factor:</label>
+                        </div>
+                        <div class="right-waste-factor">
+                        <input type="number" class="different-input" value="5">
+                        <label>%</label>
+                        </div>
+                    </div>
+                    <div class="button-row">
+                        <button class="calc-button">Calculate</button>
+                        <button class="reset-button">Reset</button>
+                    </div>
+                </div>
+        </div>
+        <div class="result">
+            <div class="left-result-column">
+                <label>Square Feet:</label>
+                <label>Waste Factor:</label>
+                <label>Total Square Feet:</label>
+                <label>Total Cost ($):</label>
+            </div>
+            <div class="right-result-column">
+                <input type="number"readonly>
+                <input type="number"readonly>
+                <input type="number"readonly>
+                <input type="number"readonly>
+            </div>
+        </div>
+    </div>  
+</body>
+</html>
