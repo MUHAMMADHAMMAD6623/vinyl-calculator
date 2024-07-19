@@ -1,208 +1,211 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epoxy Calculator</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #ffffff;
-        }
-        .calculator{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-        .calculator .inputs{
-            width: 420px;
-            height: auto;
-            padding: 40px 40px 40px 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 0.7rem;
-            background-color: #d3d3d3;
-            border-radius: 10px;
-            border: 1px solid rgb(138, 138, 138);
-        }
-        .calculator .inputs .left-column{
-            display: flex;
-            flex-direction: column;
-            gap: 0.7rem;
-            position: relative;
-            top: 20px;
-        }
-        .calculator .inputs .right-column .first-column{
-            display: flex;
-            flex-direction: column;
-            width: fit-content;
-        }
-        .calculator .inputs .right-column{
-            display: flex;
-            gap: 0.4rem;
-        }
-        .calculator .inputs .top-row{
-            display: flex;
-            gap: 0.7rem;
-        }
-        .calculator .inputs .top-row .right-column .first-column .top-row-first-column{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 0.3rem;
-            width: fit-content;
-        }
-        input{
-            width: 120px;
-            height: 22px;
-            border: 1px solid black;
-        }
-        .calculator .inputs .top-row .right-column .second-column{
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            gap: 0.3rem;
-        }
-        .different-input{
-            width: 63%;
-            text-align: center;
-        }
-        input[type="checkbox"]{
-            width: fit-content;
-            border: none;
-        }
-        .calculator .inputs .bottom-row{
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-        .calculator .inputs .bottom-row .button-row{
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.4rem;
-            position: relative;
-            left: 36px;
-        }
-        .calculator .inputs .bottom-row .button-row button{
-            width: 120px;
-            padding: 10px;
-            cursor: pointer;
-            color: white;
-            font-size: 1rem;
-        }
-        .calculator .inputs .bottom-row .checkbox-row{
-            position: relative;
-            left: 86px;
-            display: flex;
-            gap: 1.8rem;
-        }
-        .calculator .result .left-result-column{
-            display: flex;
-            flex-direction: column;
-            gap: 9px;
-        }
-        .calculator .result .right-result-column{
-            display: flex;
-            flex-direction: column;
-            gap: 0.3rem;
-        }
-        .calculator .result{
-            display: flex;
-            gap: 0.7rem;
-            background-color: #d3d3d3;
-            border-radius: 10px;
-            padding: 40px;
-            border: 1px solid rgb(138, 138, 138);
-        }
-        .calc-button{
-            border-radius: 3px;
-            background-color: rgb(18, 112, 31);
-            border: none;
-            transition: 0.2s ease-in-out background-color;
-        }
-        .calc-button:hover{
-            background-color: rgb(30, 150, 46);
-        }
-        .reset-button{
-            border-radius: 3px;
-            background-color: rgb(194, 34, 34);
-            border: none;
-            transition: 0.2s ease-in-out background-color;
-        }
-        .reset-button:hover{
-            background-color: rgb(243, 54, 54);
-        }
-    </style>
-</head>
-<body>
-    <div class="calculator">
-        <div class="inputs">
-            <div class="top-row">
-            <div class="left-column">
-                <label>Width:</label>
-                <label>Length:</label>
-                <label>Cost SqFt:</label>
+<div id="epoxy-calculator" class="epoxy-calculator">
+    <div class="row">
+        <div class="column-left">
+            <div class="row-top">
+            <div class="row">
+                <div class="column"></div>
+                <div class="column"><label>Feet</label></div>
+                <div class="column"><label>Inches</label></div>
             </div>
-            <div class="right-column">
-                <div class="first-column">
-                    <div class="top-row-first-column">
-                    <label>Feet</label>
-                    <input type="number">
-                    <input type="number">
-                    <input type="number">
-                    </div>
+            <div class="row">
+                <div class="column"><label>Width:</label></div>
+                <div class="column"><input type="number" id="widthFeet" min="0" step="1"></div>
+                <div class="column"><input type="number" id="widthInches" min="0" max="11" step="1"></div>
+            </div>
+            <div class="row">
+                <div class="column"><label>Length:</label></div>
+                <div class="column"><input type="number" id="lengthFeet" min="0" step="1"></div>
+                <div class="column"><input type="number" id="lengthInches" min="0" max="11" step="1"></div>
+            </div>
+            <div class="row single-input">
+                <div class="column"><label>Cost / SqFt ($):</label></div>
+                <div class="column" style="display: flex; justify-content: flex-end;">
+                    <input type="number" id="costPerSqFt" min="0" step="0.01">
                 </div>
-                <div class="second-column">
-                    <label>Inches</label>
-                    <input type="number"min='0'max='11'>
-                    <input type="number"min='0'max='11'>
+            </div>
+            <div class="row single-input">
+                <div class="column"><label>Waste Factor (%):</label></div>
+                <div class="column" style="display: flex; justify-content: flex-end;">
+                    <input type="number" id="wastePercentage" value="5" min="0" max="100" style="text-align: center;">
                 </div>
             </div>
             </div>
-                <div class="bottom-row">
-                    
-                    <div class="checkbox-row">
-                        <div class="left-waste-factor">
-                        <label>Waste Factor:</label>
-                        </div>
-                        <div class="right-waste-factor">
-                        <input type="number" class="different-input" value="5">
-                        <label>%</label>
-                        </div>
-                    </div>
-                    <div class="button-row">
-                        <button class="calc-button">Calculate</button>
-                        <button class="reset-button">Reset</button>
-                    </div>
+            <div class="row-bottom" style="display: flex;">
+            <div class="row">
+                <div class="column"></div>
+                <div class="column" style="display: flex; justify-content: flex-end;">
+                    <button onclick="calculateEpoxy()" style="width: 129px;">Calculate</button>
                 </div>
-        </div>
-        <div class="result">
-            <div class="left-result-column">
-                <label>Square Feet:</label>
-                <label>Waste Factor:</label>
-                <label>Total Square Feet:</label>
-                <label>Total Cost ($):</label>
             </div>
-            <div class="right-result-column">
-                <input type="number"readonly>
-                <input type="number"readonly>
-                <input type="number"readonly>
-                <input type="number"readonly>
+            <div class="row">
+                <div class="column"></div>
+                <div class="column" style="display: flex; justify-content: flex-end;">
+                    <button onclick="resetEpoxy()" class="reset-btn" style="width: 129px;">Reset</button>
+                </div>
+            </div>
             </div>
         </div>
-    </div>  
-</body>
-</html>
+        <div class="column-right">
+            <div class="result">
+                <div class="row">
+                    <div class="column"><label>Square Feet:</label></div>
+                    <div class="column"><input type="text" id="squareFeet" readonly></div>
+                </div>
+                <div class="row">
+                    <div class="column"><label>Waste Factor:</label></div>
+                    <div class="column"><input type="text" id="wasteFactor" readonly></div>
+                </div>
+                <div class="row">
+                    <div class="column"><label>Total Square Feet:</label></div>
+                    <div class="column"><input type="text" id="totalSquareFeet" readonly></div>
+                </div>
+                <div class="row">
+                    <div class="column"><label>Total Cost ($):</label></div>
+                    <div class="column"><input type="text" id="totalCost" readonly></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .epoxy-calculator {
+        font-family: Arial, sans-serif;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .epoxy-calculator .row {
+        display: flex;
+        margin-bottom: 10px;
+        align-items: center;
+    }
+    .epoxy-calculator .column-left, .epoxy-calculator .column-right {
+        flex: 1;
+    }
+    .epoxy-calculator .column-left {
+        flex: 2;
+        margin-right: 20px;
+        width: 270px;
+    }
+    .epoxy-calculator .column-right {
+        flex: 1;
+    }
+    .epoxy-calculator .column {
+        flex: 1;
+        margin-right: 5px;
+        text-align: left;
+    }
+    .epoxy-calculator .column:last-child {
+        margin-right: 0;
+    }
+    .epoxy-calculator .column-left input[type="number"],
+    .epoxy-calculator .column-left input[type="text"] {
+        width: 90%; /* Keep input width at 100% */
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    .epoxy-calculator button {
+        width: 350px; 
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        margin-top: 10px;
+    }
+    .epoxy-calculator button:hover {
+        background-color: #45a049;
+    }
+    .epoxy-calculator .reset-btn {
+        background-color: #f44336;
+    }
+    .epoxy-calculator .reset-btn:hover {
+        background-color: #d32f2f;
+    }
+    .epoxy-calculator .result {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        width: 300px;
+        margin-top: 20px;
+    }
+    .epoxy-calculator .result input {
+        background-color: #eee;
+        cursor: not-allowed;
+        width: 100%;
+    }
+    .epoxy-calculator .single-input input{
+        position: relative;
+        right: 8px;
+    }
+    .epoxy-calculator .row-bottom{
+        justify-content: flex-end;
+        position: relative;
+        right: 8px;
+    }
+    @media (max-width: 768px) {
+        .epoxy-calculator {
+            flex-direction: column;
+        }
+        .epoxy-calculator .column-left, .epoxy-calculator .column-right {
+            flex: 1 0 100%;
+            margin-right: 0;
+        }
+    }
+</style>
+<script>
+    function calculateEpoxy() {
+    const widthFeet = parseInt(document.getElementById('widthFeet').value) || 0;
+    const widthInches = parseInt(document.getElementById('widthInches').value) || 0;
+    const lengthFeet = parseInt(document.getElementById('lengthFeet').value) || 0;
+    const lengthInches = parseInt(document.getElementById('lengthInches').value) || 0;
+    const costPerSqFt = parseFloat(document.getElementById('costPerSqFt').value) || 0;
+    const wastePercentage = parseFloat(document.getElementById('wastePercentage').value) || 0;
+
+    // Calculate total width and length in feet
+    const width = widthFeet + (widthInches / 12);
+    const length = lengthFeet + (lengthInches / 12);
+
+    // Calculate square feet
+    const squareFeet = width * length;
+
+    // Calculate waste factor and total square feet
+    const wasteFactor = squareFeet * (wastePercentage / 100);
+    const totalSquareFeet = squareFeet + wasteFactor;
+
+    // Calculate total cost
+    const totalCost = totalSquareFeet * costPerSqFt;
+
+    // Display results
+    document.getElementById('squareFeet').value = squareFeet.toFixed(2);
+    document.getElementById('wasteFactor').value = wasteFactor.toFixed(2);
+    document.getElementById('totalSquareFeet').value = totalSquareFeet.toFixed(2);
+    document.getElementById('totalCost').value = totalCost.toFixed(2);
+}
+
+function resetEpoxy() {
+    // Reset all input fields in the epoxy calculator
+    const inputs = document.querySelectorAll('#epoxy-calculator input');
+    inputs.forEach(input => {
+        if (input.type === 'checkbox') {
+            input.checked = true;
+        } else if (input.id === 'wastePercentage') {
+            input.value = '5';
+        } else {
+            input.value = '';
+        }
+    });
+}
+
+</script>
